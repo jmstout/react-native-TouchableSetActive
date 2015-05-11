@@ -1,0 +1,16 @@
+{
+  "name": "react-native-TouchableSetActive",
+  "version": "0.0.1",
+  "description": "Touchable component for React Native that enables more advanced styling by setting an active state.",
+  "license": "MIT",
+  "repository": "jmstout/react-native-TouchableSetActive",
+  "author": {
+    "name": "Jeff Stout",
+    "url": "http://jmstout.com"
+  },
+  "main": "TouchableSetActive.js",
+  "peerDependencies": {
+    "react-native": "^0.4.x"
+  },
+  "keywords": [ "react-component", "react-native", "react native", "react", "touchable", "touch", "setState", "active", "style", "css", "highlight", "ios" ]
+}
