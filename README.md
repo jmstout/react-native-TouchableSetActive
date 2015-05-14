@@ -3,7 +3,7 @@ Touchable component for [React Native](https://github.com/facebook/react-native)
 
 ## Install
 ```sh
-$ npm install react-native-TouchableSetActive --save
+$ npm install react-native-touchable-set-active --save
 ```
 
 ## Usage
