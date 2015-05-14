@@ -9,7 +9,7 @@ $ npm install react-native-touchable-set-active --save
 ## Usage
 First, require the `TouchableSetActive` component in your project.
 ```javascript
-var TouchableSetActive = require('react-native-TouchableSetActive');
+var TouchableSetActive = require('react-native-touchable-set-active');
 ```
 
 There are two different ways you can use this component. They both involve passing a value to the `setActive` property on `TouchableSetActive`.
