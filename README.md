@@ -12,10 +12,11 @@ First, require the `TouchableSetActive` component in your project.
 var TouchableSetActive = require('react-native-TouchableSetActive');
 ```
 
-There are a few different ways you can use this component. They all are centered around passing a value to the `setActive` property on `TouchableSetActive`.
+There are two different ways you can use this component. They both involve passing a value to the `setActive` property on `TouchableSetActive`.
 
 ###setActive={this}
-The simplest implementation is achieved by just passing `this`. The component will set an `active` state (using `this.setState`) on the parent component:
+The simplest implementation is achieved by just passing `this`. The component will set an `active` state (using `this.setState`) on the parent component. To toggle a style, set one conditionally in the style property that is dependent on `this.state.active`.
+
 ```javascript
 class ExampleButton extends React.Component {
   constructor(props) {
@@ -74,23 +75,6 @@ class ExampleButton extends React.Component {
 }
 ```
 
-
-###setActive={*style*}
-Lastly, you can pass styles directly to `setActive`. It should be noted that if you want to apply active styles to children of `TouchableSetActive`, you should use one of the above methods instead.
-```javascript
-class ExampleButton extends React.Component {
-  render() {
-    return(
-      <TouchableSetActive
-        setActive={styles.activeButton}
-      >
-        <Text> Example Button </Text>
-      </TouchableSetActive>
-    );
-  }
-}
-```
-
 ## Additional Props
 `TouchableSetActive` is just like any other [Touchable component](https://facebook.github.io/react-native/docs/touchablewithoutfeedback.html) in that it supports the following properties:
 ```javascript
@@ -119,7 +103,7 @@ delayOnPressOut: React.PropTypes.number,
  */
 delayOnLongPress: React.PropTypes.number,
 ```
-*Support for `delayOnLongPress` is dependent on some underlying changes to the `Touchable` library. Unfortunately, it won't be available until those changes are committed. If you really need it now, take a look at [the PR](https://github.com/facebook/react-native/pull/1255) or [my branch](https://github.com/jmstout/react-native/tree/touchable-custom-delays) which adds this functionality. It should also be noted that until this PR lands, `delayOnPressIn` can be set to a maximum of `249` ms before it throws an error.*
+*Support for `delayOnLongPress` is dependent on some underlying changes to the `Touchable` library. Unfortunately, it won't be available until those changes are committed. If you really need it now, take a look at [the PR](https://github.com/facebook/react-native/pull/1255) or [my branch](https://github.com/jmstout/react-native/tree/touchable-custom-delays) which adds this functionality. It should also be noted that until this PR lands, `delayOnPressIn` can be set to a maximum of `249` ms before throwing an error.*
 
 Additionally, the props `delayActive` and `delayInactive` can be used to decouple the active state from the press events.
 ```javascript
