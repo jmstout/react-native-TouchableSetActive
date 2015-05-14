@@ -195,11 +195,13 @@ var TouchableSetActive = React.createClass({
   },
 
   touchableGetHighlightDelayMS: function() {
-    return this.props.delayOnPressIn || DEFAULT_ACTIVE_MS;
+    return this.props.delayOnPressIn === 0 ? 0 :
+      this.props.delayOnPressIn || DEFAULT_ACTIVE_MS;
   },
 
   touchableGetLongPressDelayMS: function() {
-    return this.props.delayOnLongPress || DEFAULT_LONG_PRESS_MS;
+    return this.props.delayOnLongPress === 0 ? 0 :
+      this.props.delayOnLongPress || DEFAULT_LONG_PRESS_MS;
   },
 
   _showActive: function() {
