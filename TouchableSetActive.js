@@ -31,9 +31,13 @@ var cloneWithProps = require('cloneWithProps');
 var merge = require('merge');
 var onlyChild = require('onlyChild');
 
-var DEFAULT_HIDE_MS = 200;
+var DEFAULT_HIDE_MS = 150;
 var DEFAULT_ACTIVE_MS = 120;
 var DEFAULT_LONG_PRESS_MS = 400;
+
+var DEFAULT_PROPS = {
+  delayOnPressOut: DEFAULT_HIDE_MS,
+};
 
 var TouchableSetActive = React.createClass({
   propTypes: {
@@ -83,6 +87,8 @@ var TouchableSetActive = React.createClass({
   },
 
   mixins: [TimerMixin, Touchable.Mixin],
+
+  getDefaultProps: () => DEFAULT_PROPS,
 
   _computeState: function(props) {
     return {
