@@ -1,6 +1,6 @@
 {
   "name": "react-native-touchable-set-active",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Touchable component for React Native that enables more advanced styling by setting an active state. Most useful for building your own touchable/button components on top of.",
   "license": "MIT",
   "repository": "jmstout/react-native-TouchableSetActive",
