@@ -3,8 +3,8 @@
  * MIT License
  *
  * The TouchableSetActive component was adapted from a fork of React Native's
- * original TouchableHighlight component. Therefore, the following license
- * notice also applies to parts of this source code.
+ * original Touchable components. Therefore, the following license notice also
+ * applies to parts of this source code.
  * See http://github.com/facebook/react-native for the files it refers to.
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -116,11 +116,6 @@ var TouchableSetActive = React.createClass({
         nextProps.style !== this.props.style) {
       this.setState(this._computeState(nextProps));
     }
-  },
-
-  viewConfig: {
-    uiViewClassName: 'RCTView',
-    validAttributes: ReactIOSViewAttributes.RCTView
   },
 
   _getActiveType: function() {
@@ -258,24 +253,17 @@ var TouchableSetActive = React.createClass({
   },
 
   render: function() {
-    return (
-      <View
-        style={this.state.componentStyle}
-        onStartShouldSetResponder={this.touchableHandleStartShouldSetResponder}
-        onResponderTerminationRequest={this.touchableHandleResponderTerminationRequest}
-        onResponderGrant={this._componentHandleResponderGrant}
-        onResponderMove={this.touchableHandleResponderMove}
-        onResponderRelease={this.touchableHandleResponderRelease}
-        onResponderTerminate={this.touchableHandleResponderTerminate}>
-        {cloneWithProps(
-          onlyChild(this.props.children),
-          {
-            accessible: true,
-            testID: this.props.testID,
-          }
-        )}
-      </View>
-    );
+    return React.cloneElement(onlyChild(this.props.children), {
+      style: [this.state.componentStyle, this.props.children.props.style],
+      accessible: true,
+      testID: this.props.testID,
+      onStartShouldSetResponder: this.touchableHandleStartShouldSetResponder,
+      onResponderTerminationRequest: this.touchableHandleResponderTerminationRequest,
+      onResponderGrant: this._componentHandleResponderGrant,
+      onResponderMove: this.touchableHandleResponderMove,
+      onResponderRelease: this.touchableHandleResponderRelease,
+      onResponderTerminate: this.touchableHandleResponderTerminate,
+    });
   }
 });
 
