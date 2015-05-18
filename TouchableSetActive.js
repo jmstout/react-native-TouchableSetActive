@@ -48,7 +48,7 @@ var TouchableSetActive = React.createClass({
      * Accepts a React component class (this) or function.
      */
     setActive: function(props, propName, componentName) {
-      if (!props[propName] || typeof(props[propName]) !== 'function' ||
+      if (!props[propName] || typeof(props[propName]) !== 'function' &&
         !React.addons.TestUtils.isCompositeComponent(props[propName])) {
         return new Error(
           componentName + ': prop type `' + propName + '` is ' +
@@ -119,13 +119,11 @@ var TouchableSetActive = React.createClass({
   },
 
   _getActiveType: function() {
-    var type;
     var activeProp = this.state.setActive || this.props.setActive;
-    if (typeof(activeProp) === 'function') type = 'func';
-    else if (React.addons.TestUtils.isCompositeComponent(activeProp)) {
-      type = 'class';
-    } else type = false;
-    return type;
+    if (!activeProp) return false;
+    if (typeof(activeProp) === 'function') return 'func';
+    if (React.addons.TestUtils.isCompositeComponent(activeProp)) return 'class';
+    return false;
   },
 
   /**
