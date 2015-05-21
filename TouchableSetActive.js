@@ -19,15 +19,12 @@
 'use strict';
 
 var React = require('react-native');
-var ReactIOSViewAttributes = require('ReactIOSViewAttributes');
 var TimerMixin = require('react-timer-mixin');
 var Touchable = require('Touchable');
 var TouchableWithoutFeedback = require('TouchableWithoutFeedback');
 var View = require('View');
 
-var cloneWithProps = require('cloneWithProps');
 var merge = require('merge');
-var onlyChild = require('onlyChild');
 
 var DEFAULT_HIDE_MS = 150;
 var DEFAULT_ACTIVE_MS = 120;
@@ -248,9 +245,16 @@ var TouchableSetActive = React.createClass({
     this.touchableHandleResponderGrant(e, dispatchID);
   },
 
+  _renderChildren: function(children) {
+    if (children && children.length === 1) return children;
+    else return (<View>{children}</View>);
+  },
+
   render: function() {
-    return React.cloneElement(onlyChild(this.props.children), {
-      style: [this.state.componentStyle, this.props.children.props.style],
+    var children = this.props.children;
+    var childStyle = children && children.props && children.props.style;
+    return React.cloneElement(this._renderChildren(children), {
+      style: [this.state.componentStyle, childStyle],
       accessible: true,
       testID: this.props.testID,
       onStartShouldSetResponder: this.touchableHandleStartShouldSetResponder,
