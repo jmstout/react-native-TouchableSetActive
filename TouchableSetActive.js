@@ -245,16 +245,16 @@ var TouchableSetActive = React.createClass({
     this.touchableHandleResponderGrant(e, dispatchID);
   },
 
-  _renderChildren: function(children) {
-    if (children && children.length === 1) return children;
-    else return (<View>{children}</View>);
+  _renderChildren: function(onlyChild) {
+    if (this.props.children && onlyChild) return this.props.children;
+    else return (<View>{this.props.children}</View>);
   },
 
   render: function() {
-    var children = this.props.children;
-    var childStyle = children && children.props && children.props.style;
-    return React.cloneElement(this._renderChildren(children), {
-      style: [this.state.componentStyle, childStyle],
+    var { children } = this.props;
+    var onlyChild = React.Children.count(children) === 1;
+    return React.cloneElement(this._renderChildren(onlyChild), {
+      style: [this.state.componentStyle, onlyChild && children.props.style],
       accessible: true,
       testID: this.props.testID,
       onStartShouldSetResponder: this.touchableHandleStartShouldSetResponder,
